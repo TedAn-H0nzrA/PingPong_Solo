@@ -5,13 +5,14 @@ using namespace sf;
 int main(int argc, char const *argv[])
 {
     RenderWindow ecran(VideoMode(800,600), "Ping Pond Solo\n", Style::Default);
+    ecran.setFramerateLimit(60);
 
 
     // Palette
     RectangleShape palette(Vector2f(100, 20));
     palette.setPosition(Vector2f(350, 550));
     palette.setFillColor(Color::Blue);
-    float dx = 5; // Déplacement du palette à chaque appel
+    float dx = 15; // Déplacement du palette à chaque appel
 
     // Ballon
     float rayon = 12;
