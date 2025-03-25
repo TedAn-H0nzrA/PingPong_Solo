@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
@@ -7,7 +9,7 @@ class Palette{
         float speed;
 
     public:
-        Palette(float width, float height, float& Pspeed){}
+        Palette(float width, float height, float Pspeed);
 
         // Méthode
         void setPosition(float x, float y);
