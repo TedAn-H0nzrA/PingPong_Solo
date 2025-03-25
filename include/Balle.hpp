@@ -18,11 +18,12 @@ class Balle{
         void updateVelocity();
         void setPosition(float x, float y);
         void move(float deltaTime);
-        void movementHorizontal();
-        void movementVerticale();
+        void mouvementHorizontal();
+        void mouvementVerticale();
+        void collisionFenetre(RenderWindow& window, bool& gameStop);
         void collisionPalette(const RectangleShape& palette);
         Vector2f getPosition() const;
-        float getRayon() const;
+        float getRadius() const;
         FloatRect getGlobalBounds() const;
         void draw(RenderWindow& window);
 

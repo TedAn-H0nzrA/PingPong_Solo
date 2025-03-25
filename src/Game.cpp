@@ -55,6 +55,15 @@ void Game::gameRun(){
         render();
         gestionTouche(deltaTime);
         balle.move(deltaTime);
+        balle.collisionFenetre(ecran, gameOver);
+        gameStop();
     }
     
+}
+
+// Déclaration de l'arrêt du jeu
+void Game::gameStop(){
+    if (gameOver){
+        ecran.close();
+    }
 }

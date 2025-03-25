@@ -14,7 +14,7 @@ class Constant{
         // Constante variable pour balle
         const float bRayon = 15;
         const float bSpeed = 250;
-        float bInitialAngle = M_PI;
+        float bInitialAngle = M_PI / 2;
 
         // Constante variable pour palette
         const float pWidth = 100;
