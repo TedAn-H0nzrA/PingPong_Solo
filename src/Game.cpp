@@ -38,6 +38,12 @@ void Game::gestionTouche(float& deltaTime){
     
 }
 
+void Game::gestionCollision(float& deltaTime){
+    balle.move(deltaTime);
+    balle.collisionFenetre(ecran, gameOver);
+    balle.collisionPalette(palette.getShape());
+}
+
 // Lancement du jeu
 void Game::gameRun(){
     Clock clock;
@@ -54,8 +60,7 @@ void Game::gameRun(){
 
         render();
         gestionTouche(deltaTime);
-        balle.move(deltaTime);
-        balle.collisionFenetre(ecran, gameOver);
+        gestionCollision(deltaTime);
         gameStop();
     }
     

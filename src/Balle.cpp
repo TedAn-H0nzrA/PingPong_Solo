@@ -72,7 +72,23 @@ void Balle::collisionFenetre(RenderWindow& window, bool& gameStop){
 
 // Détéction collision de la balle avec la palette
 void Balle::collisionPalette(const RectangleShape& palette){
-    
+    FloatRect dimensionPalette = palette.getGlobalBounds();
+    FloatRect dimensionBalle = shape.getGlobalBounds();
+
+    if (dimensionBalle.intersects(dimensionPalette)){
+        // Ajustement de l'angle pour la dynamique du jeu
+        float centrePalette = dimensionPalette.left + dimensionPalette.width / 2;
+        float centreBalle = dimensionBalle.left + dimensionBalle.width / 2;
+
+        float decalage = centreBalle - centrePalette;
+
+        angle += decalage * 0.1f;
+
+        updateVelocity();
+        
+        mouvementVerticale();
+
+    }
 }
 
 // Getters

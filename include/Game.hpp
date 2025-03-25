@@ -21,6 +21,7 @@ class Game{
         // Méthodes
         void render();
         void gestionTouche(float& deltatime);
+        void gestionCollision(float& deltaTime);
         void gameRun();
         void gameStop();
 };
