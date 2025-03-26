@@ -8,7 +8,7 @@ using namespace sf;
 // Constructeur
 Balle::Balle(float rayon, float speed, float angle) : rayon(rayon), speed(speed), angle(angle){
             shape.setRadius(rayon);
-            shape.setFillColor(Color::Red);
+            shape.setFillColor(Color(128, 0, 128));
             shape.setOrigin(rayon, rayon);
 
             updateVelocity();

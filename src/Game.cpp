@@ -104,7 +104,7 @@ void Game::messageGameOver(){
     // Configuration texte 
     gameOverText.setFont(font);
     gameOverText.setCharacterSize(50);
-    gameOverText.setFillColor(Color(128, 0, 128));
+    gameOverText.setFillColor(Color::Red);
     gameOverText.setString(var.gTextOver);
     gameOverText.setOrigin(gameOverText.getLocalBounds().width / 2, gameOverText.getLocalBounds().height / 2);
     gameOverText.setPosition(ecran.getSize().x / 2, ecran.getSize().y / 2);
