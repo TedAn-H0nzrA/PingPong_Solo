@@ -24,6 +24,20 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDE_DIR})
 # Liaison avec les bibliothèques SFML
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
 
+# Définition des répertoires d'assets
+set(ASSETS_DIR "${CMAKE_SOURCE_DIR}/assets")
+set(FONTS_DIR "${ASSETS_DIR}/fonts")
+set(IMAGES_DIR "${ASSETS_DIR}/images")
+
+# Ajout des répertoires d'assets en tant que définitions
+add_definitions(-DASSETS_DIR="${ASSETS_DIR}")
+add_definitions(-DFONTS_DIR="${FONTS_DIR}")
+add_definitions(-DIMAGES_DIR="${IMAGES_DIR}")
+
+# Copie des assets dans le dossier de sortie
+file(COPY ${ASSETS_DIR} DESTINATION ${CMAKE_BINARY_DIR})
+
+
 # Définition du dossier de sortie de l'exécutable
 set_target_properties(${PROJECT_NAME} PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/app"

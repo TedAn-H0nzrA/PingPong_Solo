@@ -1,3 +1,4 @@
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <Game.hpp>
 #include <Palette.hpp>
@@ -13,18 +14,49 @@ Game::Game() :
     balle(var.bRayon, var.bSpeed, var.bInitialAngle),
     palette(var.pWidth, var.pHeight, var.pSpeed){
 
+        gameOver = false;
+
         // Frame per Second
         ecran.setFramerateLimit(60);
         
         // Déclaration des positions initiales
         balle.setPosition(ecran.getSize().x / 2.f, ecran.getSize().y / 2.f);
         palette.setPosition(ecran.getSize().x / 2.f, ecran.getSize().y -(palette.getPosition().y + 30));
+
+        // Chargement de l'image
+        if(!backgroundTexture.loadFromFile(IMAGES_DIR + var.backgound)){
+            cerr << "Impossible de charger l'image de font!" << endl;
+        } 
+
+        // Chargement font
+        if (!font.loadFromFile(FONTS_DIR + var.gFont)) {
+            cerr << "Impossible de charger la police !\n";
+        }
+        
     }
 
+
+// Chargement et manipulation du backgroung image
+Sprite Game::background(){    
+    Sprite backgroundSprite;
+    backgroundSprite.setTexture(backgroundTexture);
+    
+    // Modélisation de l'image pour l'adaptation à l'écran
+    Vector2u textureSize = backgroundTexture.getSize();
+    // Calcul du scale pour adapter à la fenêtre
+    float scaleX = static_cast<float>(ecran.getSize().x) / textureSize.x;
+    float scaleY = static_cast<float>(ecran.getSize().y) / textureSize.y;
+    
+    backgroundSprite.setScale(scaleX, scaleY);
+    
+    return backgroundSprite;
+}
 
 // Affichage des objets dans le jeu
 void Game::render(){
     ecran.clear(Color(125, 125, 125));
+    auto backgroundSprite = background();
+    ecran.draw(backgroundSprite);
     palette.draw(ecran);
     balle.draw(ecran);
     ecran.display();
@@ -58,17 +90,36 @@ void Game::gameRun(){
         }
         
 
+        gameStop();
         render();
         gestionTouche(deltaTime);
         gestionCollision(deltaTime);
-        gameStop();
     }
     
+}
+
+void Game::messageGameOver(){
+    Text gameOverText;
+    
+    // Configuration texte 
+    gameOverText.setFont(font);
+    gameOverText.setCharacterSize(50);
+    gameOverText.setFillColor(Color(128, 0, 128));
+    gameOverText.setString(var.gTextOver);
+    gameOverText.setOrigin(gameOverText.getLocalBounds().width / 2, gameOverText.getLocalBounds().height / 2);
+    gameOverText.setPosition(ecran.getSize().x / 2, ecran.getSize().y / 2);
+
+    ecran.draw(gameOverText);
+    ecran.display();
+
+    sleep(seconds(3));
+       
 }
 
 // Déclaration de l'arrêt du jeu
 void Game::gameStop(){
     if (gameOver){
-        ecran.close();
+        
+        messageGameOver();
     }
 }

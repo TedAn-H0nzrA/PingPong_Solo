@@ -81,8 +81,10 @@ void Balle::collisionPalette(const RectangleShape& palette){
         float centreBalle = dimensionBalle.left + dimensionBalle.width / 2;
 
         float decalage = centreBalle - centrePalette;
+        float maxAngle = M_PI / 3; // Limite d'angle pour éviter des rebonds trop verticaux
+        float ratio = decalage / (dimensionPalette.width / 2);
+        angle = (M_PI / 2) + ratio * maxAngle;
 
-        angle += decalage * 0.1f;
 
         updateVelocity();
         

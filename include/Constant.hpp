@@ -11,6 +11,10 @@ class Constant{
         const int FPS = 60;
         const int WIDTH = 800, HEIGHT = 600;
 
+        // Variable pour Game Over
+        string gFont = "/DejaVuSans.ttf";
+        string gTextOver = "Game Over !";
+
         // Constante variable pour balle
         const float bRayon = 15;
         const float bSpeed = 250;
@@ -20,4 +24,7 @@ class Constant{
         const float pWidth = 100;
         const float pHeight = 20;
         const float pSpeed = 500;
+
+        // Backgound images
+        string backgound = "/background.jpeg";
 };
